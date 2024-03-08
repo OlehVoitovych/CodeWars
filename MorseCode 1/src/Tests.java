@@ -1,10 +1,10 @@
-import org.junit.Test;
+import org.testng.annotations.Test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 public class Tests {
     @Test
     public void testExampleFromDescription() {
-        assertThat(CustomeMorseCode.decode(".... . -.--   .--- ..- -.. ."), is("HEY JUDE"));
+        assertThat(MorseCodeDecoder.decode(".... . -.--   .--- ..- -.. ."), is("HEY JUDE"));
     }
 }
