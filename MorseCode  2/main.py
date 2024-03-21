@@ -46,17 +46,31 @@
 
 def decode_bits(bits):
     temp = ""
-    bool = False
-    outList = []
+    out = ""
     # ToDo: Accept 0's and 1's, return dots, dashes and spaces
     for c in range(0, len(bits)):
+        temp += bits[c]
+        if c != len(bits)-1:
+            if bits[c] != bits[c+1]:
+                print(temp)
+                if "1" in temp:
+                    match temp.count("1"):
+                        case temp.count("1") < 3:
 
-        if bits[c-1] == bits[c]:
-            temp += bits[c]
+                if "1" in temp and temp.count("1") > 3:
+                    out += '-'
+                if "0" in temp and temp.count("0") < 3:
+                    out += ''
+                if "0" in temp and temp.count("0") < 7:
+                    out += ' '
+                if "0" in temp and temp.count("0") >= 7:
+                    out += '   '
         else:
+            print(temp)
             outList.append(temp)
             temp = ""
-            temp += bits[c]
+
+
 
     s = ""
     for i in outList:
