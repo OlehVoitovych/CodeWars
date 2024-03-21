@@ -9,34 +9,33 @@
 #     return search_equal(morseCode)
 #
 #
-# def search_equal(coded):
-#     temp = [x.split(' ') for x in decode_bits(coded).split('   ')]
-#     MORSE_CODE_DICT = {'A': '.-', 'B': '-...',
-#                        'C': '-.-.', 'D': '-..', 'E': '.',
-#                        'F': '..-.', 'G': '--.', 'H': '....',
-#                        'I': '..', 'J': '.---', 'K': '-.-',
-#                        'L': '.-..', 'M': '--', 'N': '-.',
-#                        'O': '---', 'P': '.--.', 'Q': '--.-',
-#                        'R': '.-.', 'S': '...', 'T': '-',
-#                        'U': '..-', 'V': '...-', 'W': '.--',
-#                        'X': '-..-', 'Y': '-.--', 'Z': '--..',
-#                        '1': '.----', '2': '..---', '3': '...--',
-#                        '4': '....-', '5': '.....', '6': '-....',
-#                        '7': '--...', '8': '---..', '9': '----.',
-#                        '0': '-----', ', ': '--..--', '.': '.-.-.-',
-#                        '?': '..--..', '/': '-..-.', '-': '-....-',
-#                        '(': '-.--.', ')': '-.--.-'}
-#     print(temp)
-#     s = ''
-#     for word in temp:
-#         for i in range(0, len(word)):
-#             for key, value in MORSE_CODE_DICT.items():
-#                 if value == word[i]:
-#                     s += key
-#         s += " "
-#     if s[-1] is ' ':
-#         return s[0:-1:]
-#     return s
+def search_equal(codedList):
+    MORSE_CODE_DICT = {'A': '.-', 'B': '-...',
+                       'C': '-.-.', 'D': '-..', 'E': '.',
+                       'F': '..-.', 'G': '--.', 'H': '....',
+                       'I': '..', 'J': '.---', 'K': '-.-',
+                       'L': '.-..', 'M': '--', 'N': '-.',
+                       'O': '---', 'P': '.--.', 'Q': '--.-',
+                       'R': '.-.', 'S': '...', 'T': '-',
+                       'U': '..-', 'V': '...-', 'W': '.--',
+                       'X': '-..-', 'Y': '-.--', 'Z': '--..',
+                       '1': '.----', '2': '..---', '3': '...--',
+                       '4': '....-', '5': '.....', '6': '-....',
+                       '7': '--...', '8': '---..', '9': '----.',
+                       '0': '-----', ', ': '--..--', '.': '.-.-.-',
+                       '?': '..--..', '/': '-..-.', '-': '-....-',
+                       '(': '-.--.', ')': '-.--.-'}
+    print(codedList)
+    s = ''
+    for word in codedList:
+        for i in range(0, len(word)):
+            for key, value in MORSE_CODE_DICT.items():
+                if value == word[i]:
+                    s += key
+        s += " "
+    if s[-1] is ' ':
+        return s[0:-1:]
+    return s
 #
 #
 #
@@ -53,38 +52,35 @@ def decode_bits(bits):
         if c != len(bits)-1:
             if bits[c] != bits[c+1]:
                 print(temp)
-                if "1" in temp:
-                    match temp.count("1"):
-                        case temp.count("1") < 3:
-
-                if "1" in temp and temp.count("1") > 3:
+                if "1" in temp and temp.count("1") < 3:
+                    out += '.'
+                    temp = ""
+                    pass
+                elif "1" in temp and temp.count("1") > 3:
                     out += '-'
-                if "0" in temp and temp.count("0") < 3:
-                    out += ''
-                if "0" in temp and temp.count("0") < 7:
+                    temp = ""
+                    pass
+                elif "0" in temp and temp.count("0") < 3:
+                    temp = ""
+                    pass
+                elif "0" in temp and temp.count("0") < 7:
                     out += ' '
-                if "0" in temp and temp.count("0") >= 7:
+                    temp = ""
+                    pass
+                elif "0" in temp and temp.count("0") >= 7:
                     out += '   '
-        else:
-            print(temp)
-            outList.append(temp)
-            temp = ""
+                    temp = ""
+                    pass
+                print(temp)
+                print(out)
+            
 
 
-
-    s = ""
-    for i in outList:
-        s += i
-    print(s)
-    print(bits == s)
-    print(bits.replace(s, ""))
-
-    return outList
+    return out
 def decode_morse(morseCode):
     # ToDo: Accept dots, dashes and spaces, return human-readable message
-    seprList = decode_bits(morseCode)
+    seprList = temp = [x.split(' ') for x in decode_bits(morseCode).split('   ')]
     print(seprList)
-    morseCode = ''
     # if len(seprList) > 1:
     #
     #     for word in seprList:
